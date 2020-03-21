@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall -g
 
-OBJECTS = 	main.o
+OBJECTS = main.o
 
 main: main.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
