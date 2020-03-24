@@ -1,8 +1,10 @@
 #include <iostream>
 
+#include "file.hpp"
+
 int main()
 {
-	std::cout << "Hello World" << std::endl;
+	File getData;
 	
 	return 0;
 }
