@@ -4,6 +4,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <iomanip>
+#include <string>
 
 #include "spec.hpp"
 
@@ -16,9 +18,10 @@ class File
 	void read();
 public:
 	File();
-	Spec* getSpecs(int);
-	void dataSets(int);
+	Spec* getSpec(int);
+	void createDataSet(int);
 	void print(int);
+	void line();	
 };
 
 #endif

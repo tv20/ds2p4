@@ -1,10 +1,18 @@
 #ifndef MONTECARLO2_HPP
 #define MONTECARLO2_HPP
 
-class monteCarlo2
-{
+#include <iostream>
+#include <fstream>
 
+class MonteCarlo2
+{
+	fstream readFile;
+	std::string fileName;
 public:	
+	MonteCarlo2();
+	void readData();
+	void compute();
+	void simulate();
 
 };
 
