@@ -12,15 +12,15 @@ int main()
 	srand(time(0));
 
 	File allData;
-	MonteCarlo1 sim(allData.getSpec(1), allData.getSpec(2), 
-			allData.getSpec(3), allData.getSpec(4));
+	MonteCarlo1 sim1(allData.getSpec(1), allData.getSpec(2), allData.getSpec(3), allData.getSpec(4));
 
+	// based on how many .dat files to read in
 	int trials = 4;
 	
 	for(int i = 1; i <= trials; i++)
 	{
 		allData.createDataSet(i);
-		sim.readDataSet(i);		
+		sim1.readDataSet(i);		
 		
 		std::string first = "ds";
 		std::string last = ".txt";
@@ -35,6 +35,9 @@ int main()
 		}	
 	}
 	
+	MonteCarlo2 sim2;
+	sim2.compute();
+	sim2.simulate();
 	
 	return 0;
 }
