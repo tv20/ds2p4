@@ -1,3 +1,9 @@
+/**********************************
+Thati Vang
+spec.cpp
+project 4
+**********************************/
+
 #include "spec.hpp"
 
 Spec::Spec()

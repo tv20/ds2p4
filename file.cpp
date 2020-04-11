@@ -1,3 +1,9 @@
+/**********************************
+Thati Vang
+file.cpp
+project 4
+**********************************/
+
 #include "file.hpp"
 
 File::File()
@@ -199,28 +205,3 @@ void File::line()
 	}
 	std::cout << std::endl;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

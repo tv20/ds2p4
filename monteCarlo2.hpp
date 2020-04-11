@@ -1,3 +1,9 @@
+/**********************************
+Thati Vang
+monteCarlo2.hpp
+project 4
+**********************************/
+
 #ifndef MONTECARLO2_HPP
 #define MONTECARLO2_HPP
 
@@ -6,6 +12,9 @@
 #include <vector>
 #include <sstream>
 #include <iomanip>
+#include <string>
+#include <cstdlib>
+#include <cstdio>
 
 class MonteCarlo2
 {
@@ -17,10 +26,12 @@ class MonteCarlo2
 	std::string units;
 	int *mean;
 	int *range;
+	int *rangeVal;
 	int *occur;
 	void readData();
 	void printData();
 	void tokenize(char*,char*,char*,char*);
+	std::string expectedVal(double);
 public:	
 	MonteCarlo2();
 	~MonteCarlo2();

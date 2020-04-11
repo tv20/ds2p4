@@ -1,3 +1,9 @@
+/**********************************
+Thati Vang
+spec.hpp
+project 4
+**********************************/
+
 #ifndef SPEC_HPP
 #define SPEC_HPP
 

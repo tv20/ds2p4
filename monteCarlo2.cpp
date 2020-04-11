@@ -1,3 +1,9 @@
+/**********************************
+Thati Vang
+monteCarlo2.cpp
+project 4
+**********************************/
+
 #include "monteCarlo2.hpp"
 
 MonteCarlo2::MonteCarlo2()
@@ -9,6 +15,7 @@ MonteCarlo2::MonteCarlo2()
 	readData();
 	this->mean = new int[this->categories];
 	this->range = new int[this->categories];
+	this->rangeVal = new int[this->categories];
 	this->occur = new int[this->categories];
 }
 
@@ -16,6 +23,7 @@ MonteCarlo2::~MonteCarlo2()
 {
 	delete [] this->mean;
 	delete [] this->range;
+	delete [] this->rangeVal;
 	delete [] this->occur;
 }
 
@@ -51,17 +59,17 @@ void MonteCarlo2::readData()
 
 void MonteCarlo2::printData()
 {
-	std::cout << std::endl << std::endl
-		  << "     Simulated days: " << this->days << std::endl
-		  << "     Number of categories: " << this-> categories << std::endl
-		  << "     Ranges and occurences in each range:\n";
-	
+	std::cout << "     Simulated days: " << this->days << std::endl
+			  << "     Number of categories: " << this-> categories << std::endl
+			  << "     Ranges and occurrences in each range:\n";
+/***************
 	for(unsigned int i = 0; i < this->cat.size(); i++)
 	{
-		std::cout << "     " << cat.at(i) << std::endl;
+		std::cout << "       " << cat.at(i) << std::endl;
 	}
 	
 	std::cout << "     Units of measure: " << this->units << std::endl;
+*************/
 }
 
 void MonteCarlo2::compute()
@@ -89,10 +97,17 @@ void MonteCarlo2::compute()
 		lo >> low;
 		hi >> high;
 		oc >> occ;
-		
+
+		// store the high value for this category
+		this->rangeVal[i] = high;		
+
+		// store the occurrences for this category
 		this->occur[i] = occ;
+
+		// compute mean using the low and high value for this category
 		this->mean[i] = (low + high) / 2;
 		
+		// finds the cumulative sum
 		double num = (static_cast<double>(occ) / this->days) * 100;
 		adder[1] = num;
 		adder[0] += adder[1];
@@ -164,6 +179,72 @@ void MonteCarlo2::simulate()
 		totSimVal += simVal;
 	}
 	
-	std::cout << "     Analytical model: " << std::setprecision(2) << totVal << std::endl;
-	std::cout << "     Simulation: " << std::setprecision(2) << totSimVal << std::endl;
+	std::cout << "\n     "
+			  << std::setw(10) << "Range"
+			  << std::setw(20) << "Historical Data" 
+			  << std::setw(20) << "Simulated Data\n";
+
+	std::cout << "     ";
+	for(int i = 0; i < 49; i++)
+	{
+		std::cout << "-";
+	}
+
+	std::cout << std::endl;
+
+	for(int i = 0; i < this->categories; i++)
+	{
+		std::string ranges = "";
+		std::string lower = "";
+		std::string higher = "";
+
+		if(i == 0)
+		{
+			lower = "0";
+		}
+		else
+		{
+			lower = std::to_string(this->rangeVal[i-1]);
+		}
+		
+		higher = std::to_string(this->rangeVal[i]);
+		ranges = lower + '-' + higher;
+		std::cout << "       " << std::setw(15) << std::left << ranges
+				  << std::setw(7) << std::right << this->occur[i]
+				  << std::setw(19) << std::right << occurrence[i] << std::endl;
+	}
+
+	std::cout << "\n     Units of measure: " << this->units << std::endl;
+
+	std::cout << std::endl
+			  << "     Analytical: " << std::setprecision(2) << totVal << "."
+			  << " Expected value is in the " << expectedVal(totVal) << "/" << this->units << " range.\n";
+	std::cout << "     Simulation: " << std::setprecision(2) << totSimVal << "."
+			  << " Simulated value is in the " << expectedVal(totSimVal) << "/" << this->units << " range.\n\n";
+}
+
+std::string MonteCarlo2::expectedVal(double val)
+{
+	std::string low = "";
+	std::string high = "";
+
+	// determines output for range values in PART 2
+	for(int i = 0; i < this->categories; i++)
+	{
+		if(val < this->rangeVal[i])
+		{
+			if(i == 0)
+			{
+				low = "0";
+			}
+			else
+			{
+				low = std::to_string(this->rangeVal[i-1]);
+			}
+			high = std::to_string(this->rangeVal[i]);
+			break;
+		}
+	}
+
+	return low + '-' + high;
 }

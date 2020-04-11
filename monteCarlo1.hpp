@@ -1,3 +1,9 @@
+/**********************************
+Thati Vang
+monteCarlo1.hpp
+project 4
+**********************************/
+
 #ifndef MONTECARLO1_HPP
 #define MONTECARLO1_HPP
 

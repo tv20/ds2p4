@@ -1,3 +1,9 @@
+/**********************************
+Thati Vang
+file.hpp
+project 4
+**********************************/
+
 #ifndef FILE_HPP
 #define FILE_HPP
 

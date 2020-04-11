@@ -1,3 +1,9 @@
+/**********************************
+Thati Vang
+monteCarlo1.cpp
+project 4
+**********************************/
+
 #include "monteCarlo1.hpp"
 
 MonteCarlo1::MonteCarlo1(Spec* t1, Spec* t2, Spec* t3, Spec* t4)
@@ -31,7 +37,7 @@ void MonteCarlo1::readDataSet(int n)
 	std::string last = ".txt";
 	int found = 0;
 	
-	std::cout << "\n\nAnalyzing Data Sets:\n\n";
+	std::cout << "\nAnalyzing Data Sets:\n\n";
 	
 	for(int i = 0; i < temp->getBatches(); i++)
 	{
@@ -74,8 +80,8 @@ void MonteCarlo1::analyze(Spec *temp, int found)
 {
 	double percentFound = found / (static_cast<double>(temp->getBadBatches()) * temp->getBatches() / 100);
 	double base = 1 - static_cast<double>(temp->getBadItems()) / 100;
-	std::cout << "\nbase: " <<  std::fixed << base
+	std::cout << "\nBase: " <<  std::fixed << base
 		  << ", Exponent = " << temp->getSample() << std::endl
-		  << "P(failure to detect bad batch) = " << pow(base,temp->getSample()) << std::endl
-		  << "Percentage of bad batches actually detected = " << percentFound * 100 << "%" << std::endl;
+		  << "P(failure to detect bad batch) = " << std::setprecision(6) << pow(base,temp->getSample()) << std::endl
+		  << "Percentage of bad batches actually detected = " << std::setprecision(2) << percentFound * 100 << "%" << std::endl;
 }

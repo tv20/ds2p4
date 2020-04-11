@@ -1,3 +1,9 @@
+/**********************************
+Thati Vang
+main.cpp
+project 4
+**********************************/
+
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
@@ -17,6 +23,8 @@ int main()
 	// based on how many .dat files to read in
 	int trials = 4;
 	
+	std::cout << "PART 1\n";
+
 	for(int i = 1; i <= trials; i++)
 	{
 		allData.createDataSet(i);
@@ -35,6 +43,8 @@ int main()
 		}	
 	}
 	
+	std::cout << "PART 2\n\n";
+
 	MonteCarlo2 sim2;
 	sim2.compute();
 	sim2.simulate();
